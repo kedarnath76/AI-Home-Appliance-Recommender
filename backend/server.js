@@ -14,17 +14,25 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, etc.)
+    // Allow requests with no origin (like mobile apps or curl)
     if (!origin) return callback(null, true);
-    // Allow all vercel.app domains (covers preview deploys) and localhost
+    
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:3000',
+      'http://localhost:3001'
+    ];
+
     if (
+      allowedOrigins.includes(origin) ||
       origin.endsWith('.vercel.app') ||
-      origin === 'http://localhost:5173' ||
-      origin === 'http://localhost:3000'
+      /^http:\/\/localhost:\d+$/.test(origin)
     ) {
-      return callback(null, true);
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-    callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
 }));

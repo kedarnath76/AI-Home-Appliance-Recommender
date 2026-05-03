@@ -33,14 +33,14 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
   return (
     <div className="gh-card p-6 md:p-8">
       <h2 className="text-xl font-bold mb-6 text-white flex items-center gap-2">
-        <Sparkles className="w-5 h-5 text-gh-blue" /> Tell us what you need
+        <Sparkles className="w-5 h-5" style={{ color: '#388bfd' }} /> Tell us what you need
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Category */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">Category</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>Category</label>
             <select name="category" value={formData.category} onChange={handleChange} className="gh-input w-full">
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -48,14 +48,15 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* Budget */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider flex justify-between">
+            <label className="text-xs font-semibold uppercase tracking-wider flex justify-between" style={{ color: '#8b949e' }}>
               <span>Budget</span>
-              <span className="text-gh-blue font-bold">₹{formData.budget.toLocaleString()}</span>
+              <span style={{ color: '#388bfd' }} className="font-bold">₹{formData.budget.toLocaleString()}</span>
             </label>
             <input 
               type="range" min="1000" max="100000" step="1000" 
               name="budget" value={formData.budget} onChange={handleSliderChange}
-              className="w-full accent-gh-blue h-2 bg-gh-border rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+              style={{ accentColor: '#388bfd', backgroundColor: '#21262d' }}
             />
             <input 
               type="number" min="1000" max="100000" 
@@ -66,7 +67,7 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* Room Size */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">Room Size</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>Room Size</label>
             <select name="room_size" value={formData.room_size} onChange={handleChange} className="gh-input w-full">
               {roomSizes.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
@@ -74,7 +75,7 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* Usage Pattern */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">Usage Pattern</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>Usage Pattern</label>
             <select name="usage_pattern" value={formData.usage_pattern} onChange={handleChange} className="gh-input w-full">
               {usagePatterns.map(u => <option key={u} value={u}>{u}</option>)}
             </select>
@@ -82,7 +83,7 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* Energy Rating */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">Energy Preference</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>Energy Preference</label>
             <select name="energy_pref" value={formData.energy_pref} onChange={handleChange} className="gh-input w-full">
               {energyPrefs.map(e => <option key={e} value={e}>{e}</option>)}
             </select>
@@ -90,7 +91,7 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* City / State */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">City/Climate</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>City/Climate</label>
             <input 
               type="text" name="city" placeholder="e.g. Mumbai (Humid)"
               value={formData.city} onChange={handleChange}
@@ -100,7 +101,7 @@ export default function SmartForm({ onSubmit, isLoading, initialData = null }) {
 
           {/* Brand Preference */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-xs font-semibold text-gh-muted uppercase tracking-wider">Preferred Brand (Optional)</label>
+            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#8b949e' }}>Preferred Brand (Optional)</label>
             <input 
               type="text" name="brand_pref" placeholder="e.g. Samsung, LG"
               value={formData.brand_pref} onChange={handleChange}
