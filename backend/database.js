@@ -12,10 +12,12 @@ async function initDb() {
       ? path.join(os.tmpdir(), 'database.sqlite')
       : path.join(__dirname, 'database.sqlite');
 
+    console.log('Initializing DB at path:', dbPath);
     dbPromise = open({
       filename: dbPath,
       driver: sqlite3.Database
     }).then(async (db) => {
+      console.log('DB Connection successful, running schema setup...');
       await db.exec(`
         CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
