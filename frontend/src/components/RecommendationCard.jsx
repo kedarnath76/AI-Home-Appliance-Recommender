@@ -2,7 +2,21 @@ import React from 'react';
 import { IndianRupee, Zap, ShieldCheck, ThumbsUp, ThumbsDown, Bookmark, ExternalLink } from 'lucide-react';
 
 export default function RecommendationCard({ recommendation, index, onCompareToggle, isSelected }) {
-  const { name, brand, price, energy_rating, reason, pros, cons } = recommendation;
+  // Defensive destructuring with defaults
+  const { 
+    name = 'Unknown Appliance', 
+    brand = 'Unknown Brand', 
+    price = 0, 
+    energy_rating = 'N/A', 
+    reason = 'No reason provided.', 
+    pros = [], 
+    cons = [] 
+  } = recommendation || {};
+
+  // Ensure price is a number for toLocaleString
+  const displayPrice = typeof price === 'number' 
+    ? price.toLocaleString() 
+    : String(price).replace(/[^\d]/g, '') || '0';
 
   return (
     <div className="gh-card p-6 flex flex-col relative group overflow-hidden animate-fade-in" 
@@ -38,7 +52,7 @@ export default function RecommendationCard({ recommendation, index, onCompareTog
             <IndianRupee className="w-4 h-4" />
             <span className="text-xs font-bold uppercase">Price</span>
           </div>
-          <p className="text-lg font-bold text-white">₹{price.toLocaleString()}</p>
+          <p className="text-lg font-bold text-white">₹{displayPrice}</p>
         </div>
         <div className="p-3 rounded-lg" style={{ backgroundColor: '#0d1117', border: '1px solid #21262d' }}>
           <div className="flex items-center gap-2 mb-1" style={{ color: '#f59e0b' }}>
@@ -61,7 +75,7 @@ export default function RecommendationCard({ recommendation, index, onCompareTog
               <span className="text-xs font-bold uppercase">Pros</span>
             </div>
             <ul className="text-sm space-y-1">
-              {pros.map((pro, i) => (
+              {Array.isArray(pros) && pros.map((pro, i) => (
                 <li key={i} className="flex items-start gap-2" style={{ color: '#c9d1d9' }}>
                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#3fb950' }}></span>
                   {pro}
@@ -75,7 +89,7 @@ export default function RecommendationCard({ recommendation, index, onCompareTog
               <span className="text-xs font-bold uppercase">Cons</span>
             </div>
             <ul className="text-sm space-y-1">
-              {cons.map((con, i) => (
+              {Array.isArray(cons) && cons.map((con, i) => (
                 <li key={i} className="flex items-start gap-2" style={{ color: '#c9d1d9' }}>
                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#f85149' }}></span>
                   {con}

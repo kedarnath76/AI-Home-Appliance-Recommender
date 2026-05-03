@@ -35,12 +35,12 @@ Schema: {
       "name": "...", 
       "brand": "...", 
       "year": "2024",
-      "price_range": "...", 
-      "energy_rating": 5, 
+      "price": 35000, 
+      "energy_rating": "5 Star", 
       "units_per_year": "...",
       "pros": ["..."], 
       "cons": ["..."], 
-      "why_recommended": "..." 
+      "reason": "..." 
     } 
   ] 
 }`;
