@@ -5,9 +5,7 @@ import axios from 'axios';
 // If VITE_API_URL is set explicitly, use that
 const BASE_URL = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
-  : import.meta.env.PROD
-    ? '/_/backend/api'
-    : '/api';
+  : '/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
