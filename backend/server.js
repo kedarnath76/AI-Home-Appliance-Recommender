@@ -12,7 +12,22 @@ const chatRoute = require('./routes/chat');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: ['https://your-app.vercel.app', 'http://localhost:5173', 'http://localhost:3000'] }));
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    // Allow all vercel.app domains (covers preview deploys) and localhost
+    if (
+      origin.endsWith('.vercel.app') ||
+      origin === 'http://localhost:5173' ||
+      origin === 'http://localhost:3000'
+    ) {
+      return callback(null, true);
+    }
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 // Initialize database

@@ -1,11 +1,21 @@
 import axios from 'axios';
 
+// On Vercel (experimentalServices), backend is at /_/backend
+// Locally, Vite proxy maps /api -> localhost:5000
+// If VITE_API_URL is set explicitly, use that
+const BASE_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : import.meta.env.PROD
+    ? '/_/backend/api'
+    : '/api';
+
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
