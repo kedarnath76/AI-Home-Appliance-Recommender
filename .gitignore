@@ -1,3 +1,16 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# SQLite database file (contains user data)
+*.sqlite
+*.sqlite3
+
+# Build output
+dist/
+frontend/dist/
+
 # Logs
 logs
 *.log
