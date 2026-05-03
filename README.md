@@ -1,3 +1,5 @@
+# AI-Home-Appliance-Recommender
+AI-powered system that recommends home appliances based on user preferences like budget, usage, and energy efficiency. Built using React, Node.js, and deployed on cloud.
 # ApplianceAI
 
 A premium, full-stack web application that provides personalized home appliance recommendations using AI. Features a GitHub-inspired dark dashboard, authenticated user profiles, side-by-side spec comparison, and an interactive AI Chat Assistant.
