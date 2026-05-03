@@ -3,9 +3,7 @@ import axios from 'axios';
 // On Vercel (experimentalServices), backend is at /_/backend
 // Locally, Vite proxy maps /api -> localhost:5000
 // If VITE_API_URL is set explicitly, use that
-const BASE_URL = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : '/api';
+const BASE_URL = '/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,

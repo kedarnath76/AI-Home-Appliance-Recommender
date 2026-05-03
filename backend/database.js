@@ -12,6 +12,12 @@ async function initDb() {
       ? path.join(os.tmpdir(), 'database.sqlite')
       : path.join(__dirname, 'database.sqlite');
 
+    const fs = require('fs');
+    const dbDir = path.dirname(dbPath);
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+
     console.log('Initializing DB at path:', dbPath);
     dbPromise = open({
       filename: dbPath,
