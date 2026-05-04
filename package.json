@@ -8,5 +8,14 @@
     "dev-backend": "cd backend && npm run dev",
     "build": "cd frontend && npm install && npm run build",
     "install-all": "cd frontend && npm install && cd ../backend && npm install"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "groq-sdk": "^0.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "sql.js": "^1.10.3"
   }
 }

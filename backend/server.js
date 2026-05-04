@@ -44,6 +44,11 @@ initDb().catch(err => {
   console.error('Failed to initialize database:', err);
 });
 
+// Check for required environment variables
+if (!process.env.GROQ_API_KEY) {
+  console.error('CRITICAL: GROQ_API_KEY is missing! AI features will not work.');
+}
+
 // Routes - Dual mounting for local and Vercel compatibility
 app.use('/api/auth', authRoute);
 app.use('/auth', authRoute);
