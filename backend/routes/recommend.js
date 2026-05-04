@@ -9,13 +9,20 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 // Middleware to verify token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader) return res.status(401).json({ error: 'No token provided' });
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    // Default to Guest user if no token provided
+    req.user = { id: 0, name: 'Guest', email: 'guest@example.com' };
+    return next();
+  }
+  
   const token = authHeader.split(' ')[1];
   try {
     req.user = jwt.verify(token, JWT_SECRET);
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Invalid token' });
+    // If token is invalid, also fallback to Guest instead of failing
+    req.user = { id: 0, name: 'Guest', email: 'guest@example.com' };
+    next();
   }
 };
 

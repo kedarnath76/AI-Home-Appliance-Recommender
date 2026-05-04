@@ -16,9 +16,11 @@ export const AuthProvider = ({ children }) => {
         })
         .catch(() => {
           localStorage.removeItem('token');
+          setUser({ id: 0, name: 'Guest', email: 'guest@example.com' });
         })
         .finally(() => setLoading(false));
     } else {
+      setUser({ id: 0, name: 'Guest', email: 'guest@example.com' });
       setLoading(false);
     }
   }, []);
