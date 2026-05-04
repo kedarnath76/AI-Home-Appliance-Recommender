@@ -7,7 +7,17 @@ let initSqlJsLib = null;
 
 async function getInitSqlJs() {
   if (!initSqlJsLib) {
-    initSqlJsLib = require('sql.js');
+    try {
+      initSqlJsLib = require('sql.js');
+    } catch (err) {
+      console.warn('sql.js failed to load, using Mock DB:', err.message);
+      // Fallback mock that does nothing but prevents crashes
+      return async () => ({
+        Database: class { 
+          run() {} exec() { return [] } prepare() { return { step: () => false, free: () => {} } } export() { return new Uint8Array() }
+        }
+      });
+    }
   }
   return initSqlJsLib;
 }

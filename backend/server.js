@@ -44,11 +44,18 @@ initDb().catch(err => {
   console.error('Failed to initialize database:', err);
 });
 
-// Routes
+// Routes - Dual mounting for local and Vercel compatibility
 app.use('/api/auth', authRoute);
+app.use('/auth', authRoute);
+
 app.use('/api/recommend', recommendRoute);
+app.use('/recommend', recommendRoute);
+
 app.use('/api/history', historyRoute);
+app.use('/history', historyRoute);
+
 app.use('/api/chat', chatRoute);
+app.use('/chat', chatRoute);
 
 // Basic health check for Railway
 app.get('/health', (req, res) => {
