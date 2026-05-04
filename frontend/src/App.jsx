@@ -77,7 +77,7 @@ function MainLayout() {
         {/* Top Bar */}
         <header className="h-16 bg-gh-bg border-b border-gh-border flex items-center justify-between px-6 shrink-0">
           <div>
-            <h2 className="text-lg font-semibold text-white hidden md:block">Powered by Claude Sonnet 4.6 AI</h2>
+            <h2 className="text-lg font-semibold text-white hidden md:block"></h2>
             <h2 className="text-lg font-semibold text-white md:hidden">ApplianceAI</h2>
           </div>
           <div className="flex items-center gap-4">

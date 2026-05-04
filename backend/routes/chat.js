@@ -44,7 +44,13 @@ router.post('/', verifyToken, async (req, res) => {
     res.json({ content: responseContent });
   } catch (error) {
     console.error('Error in /api/chat:', error);
-    res.status(500).json({ error: 'Failed to get response from AI.' });
+    if (error.response) {
+      console.error('Groq Response Error:', error.response.data);
+    }
+    res.status(500).json({ 
+      error: 'Failed to get response from AI.',
+      details: error.message 
+    });
   }
 });
 

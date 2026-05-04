@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -14,7 +14,6 @@
     "express": "^4.19.2",
     "groq-sdk": "^0.3.2",
     "jsonwebtoken": "^9.0.3",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sql.js": "^1.14.1"
   }
 }

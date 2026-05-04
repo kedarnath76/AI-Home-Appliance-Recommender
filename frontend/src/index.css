@@ -23,9 +23,16 @@
 
 @layer components {
   .gh-card {
-    background-color: var(--color-card);
+    background-color: rgba(22, 27, 34, 0.8);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .gh-card:hover {
+    border-color: rgba(56, 139, 253, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
 
   .gh-input {
@@ -49,22 +56,29 @@
   }
 
   .gh-btn-primary {
-    background-color: var(--color-green);
+    background: linear-gradient(135deg, #3fb950 0%, #2ea043 100%);
     color: white;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
     border-radius: 0.5rem;
-    transition: background-color 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     border: none;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .gh-btn-primary:hover {
-    background-color: #2ea043;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(63, 185, 80, 0.2);
+    filter: brightness(1.1);
+  }
+
+  .gh-btn-primary:active {
+    transform: translateY(0);
   }
 
   .gh-btn-primary:disabled {
