@@ -18,6 +18,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     getHistory().then(history => {
+      if (!Array.isArray(history)) {
+        console.warn('History is not an array:', history);
+        return;
+      }
       setStats(prev => ({ ...prev, searches: history.length, bookmarks: 0 }));
       setRecent(history.slice(0, 3));
       

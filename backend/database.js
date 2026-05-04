@@ -14,7 +14,18 @@ async function getInitSqlJs() {
       // Fallback mock that does nothing but prevents crashes
       return async () => ({
         Database: class { 
-          run() {} exec() { return [] } prepare() { return { step: () => false, free: () => {} } } export() { return new Uint8Array() }
+          run() {} 
+          exec() { return [] } 
+          prepare() { 
+            return { 
+              bind: () => {},
+              step: () => false, 
+              free: () => {},
+              getColumnNames: () => [],
+              get: () => []
+            } 
+          } 
+          export() { return new Uint8Array() }
         }
       });
     }
